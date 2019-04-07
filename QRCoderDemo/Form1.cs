@@ -6,12 +6,19 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using QRCoder;
 using System.Drawing.Imaging;
 using System.IO;
+using QRCoder;
 
 namespace QRCoderDemo
 {
+    public enum ImgFormat : int
+    {
+        BMP = 1,
+        JPEG,
+        PNG,
+        GIF
+    }
     public partial class Form1 : Form
     {
         public Form1()
@@ -111,18 +118,18 @@ namespace QRCoderDemo
                     // NOTE that the FilterIndex property is one-based.
 
                     ImageFormat imageFormat = null;
-                    switch (saveFileDialog1.FilterIndex)
+                    switch ((ImgFormat)saveFileDialog1.FilterIndex)
                     {
-                        case 1:
+                        case ImgFormat.BMP:
                             imageFormat = ImageFormat.Bmp;
                             break;
-                        case 2:
+                        case ImgFormat.PNG:
                             imageFormat = ImageFormat.Png;
                             break;
-                        case 3:
+                        case ImgFormat.JPEG:
                             imageFormat = ImageFormat.Jpeg;
                             break;
-                        case 4:
+                        case ImgFormat.GIF:
                             imageFormat = ImageFormat.Gif;
                             break;
                         default:
